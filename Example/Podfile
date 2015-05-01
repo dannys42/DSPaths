@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'DSPaths', :exclusive => true do
+  pod "DSPaths", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "DSPaths", :path => "../"
+
+  pod 'Specta'
+  pod 'Expecta'
+end
