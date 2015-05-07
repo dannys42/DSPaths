@@ -6,22 +6,27 @@
 //  Copyright (c) 2014 Danny Sung. All rights reserved.
 //
 
+#import "DSPaths.h"
+#import "NSURL+DSPaths.h"
+
 SpecBegin(InitialSpecs)
 
-describe(@"these will fail", ^{
+describe(@"DocumentDirectory", ^{
 
-    it(@"can do maths", ^{
-        expect(1).to.equal(2);
-    });
-
-    it(@"can read", ^{
-        expect(@"number").to.equal(@"string");
+    NSString *documentDirectory = [DSPaths documentDirectory];
+    it(@"has Document Directory", ^{
+        expect(documentDirectory).notTo.equal(nil);
     });
     
-    it(@"will wait for 10 seconds and fail", ^{
-        waitUntil(^(DoneCallback done) {
-        
-        });
+    NSURL *docFile = [NSURL documentDirectoryWithPath:@"foo/bar"];
+    NSURL *contractDocFile = [NSURL contractWithURL:docFile];
+    NSURL *expandDocFile = [NSURL expandWithURL:contractDocFile];
+    it(@"Document Contraction", ^{
+        expect(contractDocFile.relativePath).to.equal(@"_DocumentDirectory/foo/bar");
+    });
+    it(@"Document Expansion", ^{
+        expect(expandDocFile).to.equal(docFile);
+        expect(contractDocFile).notTo.equal(docFile);
     });
 });
 
