@@ -33,5 +33,4 @@
  */
 +(NSString *)libraryWithPathComponents:(NSArray *)pathComponents;
 
-
 @end
