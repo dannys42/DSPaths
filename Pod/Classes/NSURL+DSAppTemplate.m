@@ -166,15 +166,31 @@
     static dispatch_once_t once;
     static NSDictionary *templateMap;
     dispatch_once(&once, ^{
-        templateMap = @{
-                        kLIBRARY_DIRECTORY : [DSPaths libraryDirectory],
-                        kDOCUMENT_DIRECTORY : [DSPaths documentDirectory],
-                        kSUPPORT_DIRECTORY : [DSPaths supportDirectory],
-                        kCUSTOMARY_SUPPORT_DIRECTORY : [DSPaths customarySupportDirectory],
-                        kCACHE_DIRECTORY : [DSPaths cacheDirectory],
-                        kTEMP_DIRECTORY : [DSPaths tempDirectory],
-                        kUSER_DIRECTORY : [DSPaths userDirectory],
-                        };
+        NSMutableDictionary *map = [[NSMutableDictionary alloc] init];
+        NSString *s;
+        
+        s = [DSPaths libraryDirectory];
+        if( s ) map[kLIBRARY_DIRECTORY] = s;
+        
+        s = [DSPaths documentDirectory];
+        if( s ) map[kDOCUMENT_DIRECTORY] = s;
+        
+        s = [DSPaths supportDirectory];
+        if( s ) map[kSUPPORT_DIRECTORY] = s;
+        
+        s = [DSPaths customarySupportDirectory];
+        if( s ) map[kCUSTOMARY_SUPPORT_DIRECTORY] = s;
+        
+        s = [DSPaths cacheDirectory];
+        if( s ) map[kCACHE_DIRECTORY] = s;
+        
+        s = [DSPaths tempDirectory];
+        if( s ) map[kTEMP_DIRECTORY] = s;
+        
+        s = [DSPaths userDirectory];
+        if( s ) map[kUSER_DIRECTORY] = s;
+
+        templateMap = map;
     });
     return templateMap;
 }
