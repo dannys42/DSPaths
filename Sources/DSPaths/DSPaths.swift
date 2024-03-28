@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DSPaths {
+public class DSPaths {
     /// Get a valid path for a given searchPath.
     /// A convenience method that gets the first path from a call to:
     /// @code
@@ -17,14 +17,10 @@ class DSPaths {
     /// - Parameter searchPathDirectory:
     /// - Returns: filesystem path
     /// @retval nil if not found
-    class func path(with searchPathDirectory: FileManager.SearchPathDirectory) -> String? {
+    public class func path(with searchPathDirectory: FileManager.SearchPathDirectory) -> String {
         let paths = FileManager.default.urls(for: searchPathDirectory, in: .userDomainMask).map(\.path)
 
-        var resolvedPath: String?
-        if paths.count > 0 {
-            resolvedPath = paths[0]
-        }
-        return resolvedPath
+        return paths.first!
     }
 
     /// Get the full path to a file within the search Path Directory.
@@ -33,14 +29,8 @@ class DSPaths {
     /// @retval nil if searchPathDirectory could not be determined.
     /// @retval nil if filename is nil
     /// - seealso: pathWithSearchPathDirectory:
-    class func path(withFile filename: String?, in searchPathDirectory: FileManager.SearchPathDirectory) -> String? {
+    class func path(withFile filename: String, in searchPathDirectory: FileManager.SearchPathDirectory) -> String {
         let path = self.path(with: searchPathDirectory)
-        if path == nil {
-            return nil
-        }
-        if filename == nil {
-            return nil
-        }
 
         return NSString.path(withComponents: [path, filename].compactMap { $0 })
     }
@@ -51,26 +41,17 @@ class DSPaths {
     /// @retval nil if searchPathDirectory could not be determined.
     /// @retval nil if filename is nil
     /// - seealso: pathWithSearchPathDirectory:
-    class func path(withComponents pathComponents: [String]?, in searchPathDirectory: FileManager.SearchPathDirectory) -> String? {
-        var rtn: String?
+    class func path(withComponents pathComponents: [String], in searchPathDirectory: FileManager.SearchPathDirectory) -> String {
         let path = self.path(with: searchPathDirectory)
-        if path == nil {
-            return nil
-        }
-        if pathComponents == nil {
-            return nil
+        if pathComponents.isEmpty {
+            return path
         }
 
-        var array = [AnyHashable](repeating: 0, count: 1 + (pathComponents?.count ?? 0))
-        array.append(path ?? "")
-        if let pathComponents {
-            array.append(contentsOf: pathComponents)
-        }
+        var array = [path]
 
-        if let array = array as? [String] {
-            rtn = NSString.path(withComponents: array)
-        }
+        array.append(contentsOf: pathComponents)
 
+        let rtn = NSString.path(withComponents: array)
         return rtn
 
     }
@@ -79,12 +60,9 @@ class DSPaths {
     /// - Parameters:
     ///   - directory: full path to create
     ///   - errorOut: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify \em nil for this parameter if you do not want the error information.
-    class func createDirectory(_ directory: String?) throws {
-        if directory == nil {
-            return
-        }
+    class func createDirectory(_ directory: String) throws {
         try FileManager.default.createDirectory(
-            atPath: directory ?? "",
+            atPath: directory,
             withIntermediateDirectories: true,
             attributes: nil)
     }

@@ -10,131 +10,93 @@ import Foundation
 
 extension URL {
     static func cacheDirectory() -> URL? {
-        guard let cacheDirectory = DSPaths.cacheDirectory() else {
-            return nil
-        }
+        let cacheDirectory = DSPaths.cacheDirectory
         return URL(fileURLWithPath: cacheDirectory)
     }
 
-    static func cacheDirectory(withPath path: String?) -> URL? {
-        guard let cachePath = DSPaths.cache(withFile: path) else {
-            return nil
-        }
+    static func cacheDirectory(withPath path: String) -> URL {
+        let cachePath = DSPaths.cache(withFile: path)
 
         return URL(fileURLWithPath: cachePath)
     }
 
-    static func cacheDirectory(withPathComponents pathComponents: [String]?) -> URL? {
-        guard let cachePath = DSPaths.cache(withPathComponents: pathComponents) else {
-            return nil
-        }
+    static func cacheDirectory(withPathComponents pathComponents: [String]) -> URL {
+        let cachePath = DSPaths.cache(withPathComponents: pathComponents)
         return URL(fileURLWithPath: cachePath)
     }
 
-    static func documentDirectory() -> URL? {
-        guard let documentDirectory = DSPaths.documentDirectory() else {
-            return nil
-        }
-        return URL(fileURLWithPath: documentDirectory)
+    static func documentDirectory() -> URL {
+        return URL(fileURLWithPath: DSPaths.documentDirectory)
     }
 
-    static func documentDirectory(withPath path: String?) -> URL? {
-        guard let documentDirectory = DSPaths.document(withFile: path) else {
-            return nil
-        }
-        return URL(fileURLWithPath: documentDirectory)
+    static func documentDirectory(withPath path: String) -> URL {
+        let documentPath = DSPaths.document(withFile: path)
+        return URL(fileURLWithPath: documentPath)
     }
 
-    static func documentDirectory(withPathComponents pathComponents: [String]?) -> URL? {
-        guard let documentPath = DSPaths.document(withPathComponents: pathComponents) else {
-
-            return nil
-        }
+    static func documentDirectory(withPathComponents pathComponents: [String]) -> URL {
+        let documentPath = DSPaths.document(withPathComponents: pathComponents)
         return URL(fileURLWithPath: documentPath)
     }
 
     static func libraryDirectory() -> URL? {
-        guard let libraryPath = DSPaths.libraryDirectory() else {
-            return nil
-        }
+        let libraryPath = DSPaths.libraryDirectory
         return URL(fileURLWithPath: libraryPath)
     }
 
-    static func libraryDirectory(withPath path: String?) -> URL? {
-        guard let libraryPath = DSPaths.library(withFile: path) else {
-            return nil
-        }
+    static func libraryDirectory(withPath path: String) -> URL {
+        let libraryPath = DSPaths.library(withFile: path)
         return URL(fileURLWithPath: libraryPath)
     }
 
-    static func libraryDirectory(withPathComponents pathComponents: [String]?) -> URL? {
-        guard let libraryPath = DSPaths.library(withPathComponents: pathComponents) else {
-            return nil
-        }
+    static func libraryDirectory(withPathComponents pathComponents: [String]) -> URL {
+        let libraryPath = DSPaths.library(withPathComponents: pathComponents)
 
         return URL(fileURLWithPath: libraryPath)
     }
 
     static func supportDirectory() -> URL? {
-        guard let supportDirectory = DSPaths.supportDirectory() else {
-            return nil
-        }
+        let supportDirectory = DSPaths.supportDirectory
         return URL(fileURLWithPath: supportDirectory)
     }
 
-    static func supportDirectory(withPath path: String?) -> URL? {
-        guard let libraryPath = DSPaths.library(withFile: path) else {
-            return nil
-        }
+    static func supportDirectory(withPath path: String) -> URL {
+        let libraryPath = DSPaths.library(withFile: path)
         return URL(fileURLWithPath: libraryPath)
     }
 
-    static func supportDirectory(withPathComponents pathComponents: [String]?) -> URL? {
-        guard let supportPath = DSPaths.support(withPathComponents: pathComponents) else {
-            return nil
-        }
+    static func supportDirectory(withPathComponents pathComponents: [String]) -> URL {
+        let supportPath = DSPaths.support(withPathComponents: pathComponents)
         return URL(fileURLWithPath: supportPath)
     }
 
     static func tempDirectory() -> URL? {
-        guard let tempDirectory = DSPaths.tempDirectory() else {
-            return nil
-        }
+        let tempDirectory = DSPaths.tempDirectory
         return URL(fileURLWithPath: tempDirectory)
     }
 
-    static func tempDirectory(withPath path: String?) -> URL? {
-        guard let libraryPath = DSPaths.library(withFile: path) else {
-            return nil
-        }
+    static func tempDirectory(withPath path: String) -> URL {
+        let libraryPath = DSPaths.library(withFile: path)
         return URL(fileURLWithPath: libraryPath)
     }
 
-    static func tempDirectory(withPathComponents pathComponents: [AnyHashable]?) -> URL? {
-        guard let tempPath = DSPaths.temp(withPathComponents: pathComponents) else {
-            return nil
-        }
+    static func tempDirectory(withPathComponents pathComponents: [String]) -> URL {
+        let tempPath = DSPaths.temp(withPathComponents: pathComponents)
         return URL(fileURLWithPath: tempPath)
     }
 
-    static func userDirectory() -> URL? {
-        guard let userDirectory = DSPaths.userDirectory() else {
-            return nil
-        }
+    static func userDirectory() -> URL {
+        let userDirectory = DSPaths.userDirectory
         return URL(fileURLWithPath: userDirectory)
     }
 
-    static func userDirectory(withPath path: String?) -> URL? {
-        guard let tempPath = DSPaths.temp(withFile: path) else {
-            return nil
-        }
+    static func userDirectory(withPath path: String) -> URL {
+        let tempPath = DSPaths.temp(withFile: path)
         return URL(fileURLWithPath: tempPath)
     }
 
-    static func userDirectory(withPathComponents pathComponents: [String]?) -> URL? {
-        guard let userPath = DSPaths.user(withPathComponents: pathComponents) else {
-            return nil
-        }
+    static func userDirectory(withPathComponents pathComponents: [String]) -> URL {
+        let userPath = DSPaths.user(withPathComponents: pathComponents)
         return URL(fileURLWithPath: userPath)
     }
 }

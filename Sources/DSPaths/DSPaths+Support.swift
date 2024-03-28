@@ -11,8 +11,8 @@ extension DSPaths {
     /// Get the full path to the Application Support Directory.
     /// - Returns: Full path to the NSApplicationSupportDirectory.
     /// @retval nil if not available
-    class func supportDirectory() -> String? {
-        return self.path(with: FileManager.SearchPathDirectory.applicationSupportDirectory)
+    class var supportDirectory: String {
+        self.path(with: FileManager.SearchPathDirectory.applicationSupportDirectory)
     }
 
     /// Get the full path to a file within the Application Support Directory.
@@ -21,7 +21,7 @@ extension DSPaths {
     /// @retval nil if not NSApplicationSupportDirectory could not be determined.
     /// @retval nil if filename is nil
     /// @
-    class func support(withFile filename: String?) -> String? {
+    class func support(withFile filename: String) -> String {
         return self.path(withFile: filename, in: FileManager.SearchPathDirectory.applicationSupportDirectory)
     }
 
@@ -30,7 +30,7 @@ extension DSPaths {
     /// - Returns: full path to components in NSApplicationSupportDirectory
     /// @retval nil if NSApplicationSupportDirectory could not be determined.
     /// @retval nil if pathComponenets is nil
-    class func support(withPathComponents pathComponents: [String]?) -> String? {
+    class func support(withPathComponents pathComponents: [String]) -> String {
         return self.path(withComponents: pathComponents, in: FileManager.SearchPathDirectory.applicationSupportDirectory)
     }
 
@@ -40,11 +40,8 @@ extension DSPaths {
     ///   - errorOut: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify \em nil for this parameter if you do not want the error information.
     /// - seealso: supportDirectory
     /// - Returns: full path to NSApplicationSupportDirectory
-    class func supportDirectoryCreateIfNecessary(_ shouldCreate: Bool) throws -> String? {
+    class func supportDirectoryCreateIfNecessary(_ shouldCreate: Bool) throws -> String {
         let path = self.path(with: FileManager.SearchPathDirectory.applicationSupportDirectory)
-        if path == nil {
-            return nil
-        }
 
         if shouldCreate {
             try self.createDirectory(path)

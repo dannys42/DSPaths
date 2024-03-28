@@ -20,12 +20,11 @@ extension DSPaths {
      /Users/person/Library/Application Support/ExampleApp/
 
      Ref: http://www.cocoawithlove.com/2010/05/finding-or-creating-application-support.html
-     */
-    class func customarySupportDirectory() -> String? {
-        guard let executableName = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String else {
 
-            return nil
-        }
+     If CFBundleExecutable does not exist, "UnnamedApp" will be used instead.
+     */
+    class var customarySupportDirectory: String {
+        let executableName = (Bundle.main.infoDictionary?["CFBundleExecutable"] as? String) ?? "UnnamedApp"
         let result = self.support(withPathComponents: [executableName])
         return result
     }
@@ -41,11 +40,8 @@ extension DSPaths {
     ///   - errorOut: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify \em nil for this parameter if you do not want the error information.
     /// - seealso: customarySupportDirectory
     /// - Returns: full path to Application Support directory.
-    class func customarySupportDirectoryCreateIfNecessary(_ shouldCreate: Bool) throws -> String? {
-        let path = self.customarySupportDirectory()
-        if path == nil {
-            return nil
-        }
+    class func customarySupportDirectoryCreateIfNecessary(_ shouldCreate: Bool) throws -> String {
+        let path = self.customarySupportDirectory
 
         if shouldCreate {
             try self.createDirectory(path)
@@ -60,14 +56,8 @@ extension DSPaths {
     /// @retval nil if not NSDocumentDirectory could not be determined.
     /// @retval nil if filename is nil
     /// @
-    class func customarySupport(withFile filename: String?) -> String? {
-        let path = self.customarySupportDirectory()
-        if path == nil {
-            return nil
-        }
-        if filename == nil {
-            return nil
-        }
+    class func customarySupport(withFile filename: String) -> String {
+        let path = self.customarySupportDirectory
 
         return NSString.path(withComponents: [path, filename].compactMap { $0 })
     }
@@ -77,25 +67,16 @@ extension DSPaths {
     /// - Returns: full path to components in NSDocumentDirectory
     /// @retval nil if NSDocumentsDirectory could not be determined.
     /// @retval nil if pathComponenets is nil
-    class func customarySupport(withPathComponents pathComponents: [AnyHashable]?) -> String? {
-        var rtn: String?
-        let path = self.customarySupportDirectory()
-        if path == nil {
-            return nil
-        }
-        if pathComponents == nil {
-            return nil
+    class func customarySupport(withPathComponents pathComponents: [String]) -> String {
+        let path = self.customarySupportDirectory
+        if pathComponents.isEmpty {
+            return path
         }
 
-        var array = [AnyHashable](repeating: 0, count: 1 + (pathComponents?.count ?? 0))
-        array.append(path ?? "")
-        if let pathComponents {
-            array.append(contentsOf: pathComponents)
-        }
+        var array = [path]
+        array.append(contentsOf: pathComponents)
 
-        if let array = array as? [String] {
-            rtn = NSString.path(withComponents: array)
-        }
+        let rtn = NSString.path(withComponents: array)
 
         return rtn
     }

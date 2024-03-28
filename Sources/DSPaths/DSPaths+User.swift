@@ -11,8 +11,8 @@ extension DSPaths {
     /// Get the full path to the User Directory.
     /// - Returns: Full path to the NSTempDirectory.
     /// @retval nil if not available
-    class func userDirectory() -> String? {
-        return self.path(with: FileManager.SearchPathDirectory.userDirectory)
+    class var userDirectory: String {
+        self.path(with: FileManager.SearchPathDirectory.userDirectory)
     }
 
     /// Get the full path to a file within the User Directory.
@@ -21,7 +21,7 @@ extension DSPaths {
     /// @retval nil if not NSCachesDirectory could not be determined.
     /// @retval nil if filename is nil
     /// @
-    class func user(withFile filename: String?) -> String? {
+    class func user(withFile filename: String) -> String {
         return self.path(withFile: filename, in: FileManager.SearchPathDirectory.userDirectory)
     }
 
@@ -30,7 +30,7 @@ extension DSPaths {
     /// - Returns: full path to components in NSTempDirectory
     /// @retval nil if NSTempDirectory could not be determined.
     /// @retval nil if pathComponenets is nil
-    class func user(withPathComponents pathComponents: [String]?) -> String? {
+    class func user(withPathComponents pathComponents: [String]) -> String {
         return self.path(withComponents: pathComponents, in: FileManager.SearchPathDirectory.userDirectory)
     }
 }

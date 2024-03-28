@@ -31,7 +31,7 @@ extension URL {
 
     #if false
 
-    func relativePathComponents() -> [AnyHashable]? {
+    func relativePathComponents() -> [String]? {
         var pathComponents = self.pathComponents
         if pathComponents.count > 2 {
             pathComponents.remove(at: 0) // 1st slash
@@ -185,31 +185,17 @@ extension URL {
 
 
     static let templateMapVar = {
-            var map: [String : String] = [:]
+        var map: [String : String] = [:]
 
-            if let s = DSPaths.libraryDirectory() {
-                map[kLIBRARY_DIRECTORY] = s
-            }
-            if let s = DSPaths.documentDirectory() {
-                map[kDOCUMENT_DIRECTORY] = s
-            }
-            if let s = DSPaths.supportDirectory() {
-                map[kSUPPORT_DIRECTORY] = s
-            }
-            if let s = DSPaths.customarySupportDirectory() {
-                map[kCUSTOMARY_SUPPORT_DIRECTORY] = s
-            }
-            if let s = DSPaths.cacheDirectory() {
-                map[kCACHE_DIRECTORY] = s
-            }
-            if let s = DSPaths.tempDirectory() {
-                map[kTEMP_DIRECTORY] = s
-            }
-            if let s = DSPaths.userDirectory() {
-                map[kUSER_DIRECTORY] = s
-            }
-            var templateMap = map
-            return templateMap
+        map[kLIBRARY_DIRECTORY] = DSPaths.libraryDirectory
+        map[kDOCUMENT_DIRECTORY] = DSPaths.documentDirectory
+        map[kSUPPORT_DIRECTORY] = DSPaths.supportDirectory
+        map[kCUSTOMARY_SUPPORT_DIRECTORY] = DSPaths.customarySupportDirectory
+        map[kCACHE_DIRECTORY] = DSPaths.cacheDirectory
+        map[kTEMP_DIRECTORY] = DSPaths.tempDirectory
+        map[kUSER_DIRECTORY] = DSPaths.userDirectory
+        var templateMap = map
+        return templateMap
     }()
 
     static func templateMap() -> [String : String] {
