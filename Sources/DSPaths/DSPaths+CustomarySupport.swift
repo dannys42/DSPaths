@@ -7,7 +7,7 @@
 //
 import Foundation
 
-extension DSPaths {
+public extension DSPaths {
     /// Get the \em Customary Application Support directory.
     /// @note By convention, the \em Customary Application Support directory is the full path to the NSApplicationSupportDirectory followed by the name of the application.  For example:
     /// \begincode

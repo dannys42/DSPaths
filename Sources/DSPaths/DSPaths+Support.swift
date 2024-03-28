@@ -7,7 +7,7 @@
 //
 import Foundation
 
-extension DSPaths {
+public extension DSPaths {
     /// Get the full path to the Application Support Directory.
     /// - Returns: Full path to the NSApplicationSupportDirectory.
     /// @retval nil if not available

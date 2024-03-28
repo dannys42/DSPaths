@@ -7,7 +7,7 @@
 //
 import Foundation
 
-extension DSPaths {
+public extension DSPaths {
     /// Get the full path to the Library Directory.
     /// - Returns: Full path to the NSLibraryDirectory.
     /// @retval nil if not available

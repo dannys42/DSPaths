@@ -29,7 +29,7 @@ public class DSPaths {
     /// @retval nil if searchPathDirectory could not be determined.
     /// @retval nil if filename is nil
     /// - seealso: pathWithSearchPathDirectory:
-    class func path(withFile filename: String, in searchPathDirectory: FileManager.SearchPathDirectory) -> String {
+    public class func path(withFile filename: String, in searchPathDirectory: FileManager.SearchPathDirectory) -> String {
         let path = self.path(with: searchPathDirectory)
 
         return NSString.path(withComponents: [path, filename].compactMap { $0 })
@@ -41,7 +41,7 @@ public class DSPaths {
     /// @retval nil if searchPathDirectory could not be determined.
     /// @retval nil if filename is nil
     /// - seealso: pathWithSearchPathDirectory:
-    class func path(withComponents pathComponents: [String], in searchPathDirectory: FileManager.SearchPathDirectory) -> String {
+    public class func path(withComponents pathComponents: [String], in searchPathDirectory: FileManager.SearchPathDirectory) -> String {
         let path = self.path(with: searchPathDirectory)
         if pathComponents.isEmpty {
             return path
@@ -60,7 +60,7 @@ public class DSPaths {
     /// - Parameters:
     ///   - directory: full path to create
     ///   - errorOut: On input, a pointer to an error object. If an error occurs, this pointer is set to an actual error object containing the error information. You may specify \em nil for this parameter if you do not want the error information.
-    class func createDirectory(_ directory: String) throws {
+    public class func createDirectory(_ directory: String) throws {
         try FileManager.default.createDirectory(
             atPath: directory,
             withIntermediateDirectories: true,

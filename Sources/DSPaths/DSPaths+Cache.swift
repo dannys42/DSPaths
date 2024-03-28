@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension DSPaths {
+public extension DSPaths {
     /// Get the full path to the Cache Directory.
     /// - Returns: Full path to the NSCachesDirectory.
     /// @retval nil if not available

@@ -7,7 +7,7 @@
 //
 import Foundation
 
-extension DSPaths {
+public extension DSPaths {
     /// Get the full path to the User Directory.
     /// - Returns: Full path to the NSTempDirectory.
     /// @retval nil if not available

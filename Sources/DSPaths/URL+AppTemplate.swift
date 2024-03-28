@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension URL {
+public extension URL {
     var templateKey: String? {
         let pathComponents = self.pathComponents
         if pathComponents.count <= 1 {

@@ -7,7 +7,7 @@
 //
 import Foundation
 
-extension DSPaths {
+public extension DSPaths {
     /// Get the full path to the Documents Directory.
     /// - Returns: Full path to the NSDocumentDirectory.
     /// @retval nil if not available

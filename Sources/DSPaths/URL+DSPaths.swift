@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension URL {
+public extension URL {
     static func cacheDirectory() -> URL? {
         let cacheDirectory = DSPaths.cacheDirectory
         return URL(fileURLWithPath: cacheDirectory)
