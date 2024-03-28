@@ -15,7 +15,7 @@ public extension URL {
             return nil
         }
 
-        let templateMap = URL.templateMap()
+        let templateMap = URL.templateMap
         let p1 = pathComponents[1]
         let templateKey = templateMap[p1]
 
@@ -97,7 +97,7 @@ public extension URL {
         }
 
         let pathComponents = url.pathComponents
-        let templateMap = URL.templateMap()
+        let templateMap = URL.templateMap
 
         var newPathComponents: [String] = []
 
@@ -146,7 +146,7 @@ public extension URL {
         var matchKey: String?
         var matchScore = 0
 
-        let templateMap = URL.templateMap()
+        let templateMap = URL.templateMap
         for (templateKey, templatePath) in templateMap {
 
             if urlString.hasPrefix(templatePath) {
@@ -183,34 +183,26 @@ public extension URL {
 
     // MARK: Private Methods
 
-
-    static let templateMapVar = {
-        var map: [String : String] = [:]
-
-        map[kLIBRARY_DIRECTORY] = DSPaths.libraryDirectory
-        map[kDOCUMENT_DIRECTORY] = DSPaths.documentDirectory
-        map[kSUPPORT_DIRECTORY] = DSPaths.supportDirectory
-        map[kCUSTOMARY_SUPPORT_DIRECTORY] = DSPaths.customarySupportDirectory
-        map[kCACHE_DIRECTORY] = DSPaths.cacheDirectory
-        map[kTEMP_DIRECTORY] = DSPaths.tempDirectory
-        map[kUSER_DIRECTORY] = DSPaths.userDirectory
-        var templateMap = map
-        return templateMap
+    private static var templateMap: [String : String] = {
+        [
+            kLIBRARY_DIRECTORY: DSPaths.libraryDirectory,
+            kDOCUMENT_DIRECTORY: DSPaths.documentDirectory,
+            kSUPPORT_DIRECTORY: DSPaths.supportDirectory,
+            kCUSTOMARY_SUPPORT_DIRECTORY: DSPaths.customarySupportDirectory,
+            kCACHE_DIRECTORY: DSPaths.cacheDirectory,
+            kTEMP_DIRECTORY: DSPaths.tempDirectory,
+            kUSER_DIRECTORY: DSPaths.userDirectory,
+        ]
     }()
-
-    static func templateMap() -> [String : String] {
-        // [Swiftify] `dispatch_once()` call was converted to the initializer of the `templateMapVar` variable
-        return templateMapVar
-    }
 }
 
-let kSUPPORT_DIRECTORY = "_ApplicationSupportDirectory"
-let kCUSTOMARY_SUPPORT_DIRECTORY = "_CustomaryApplicationSupportDirectory"
-let kLIBRARY_DIRECTORY = "_LibraryDirectory"
-let kDOCUMENT_DIRECTORY = "_DocumentDirectory"
-let kCACHE_DIRECTORY = "_CacheDirectory"
-let kTEMP_DIRECTORY = "_TempDirectory"
-let kUSER_DIRECTORY = "_UserDirectory"
+internal let kSUPPORT_DIRECTORY = "_ApplicationSupportDirectory"
+internal let kCUSTOMARY_SUPPORT_DIRECTORY = "_CustomaryApplicationSupportDirectory"
+internal let kLIBRARY_DIRECTORY = "_LibraryDirectory"
+internal let kDOCUMENT_DIRECTORY = "_DocumentDirectory"
+internal let kCACHE_DIRECTORY = "_CacheDirectory"
+internal let kTEMP_DIRECTORY = "_TempDirectory"
+internal let kUSER_DIRECTORY = "_UserDirectory"
 /* Not yet supported
  #define kDOCUMENTATION_DIRECTORY        @"_DocumentationDirectory"
  */
