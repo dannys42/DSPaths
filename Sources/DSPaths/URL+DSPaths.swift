@@ -1,6 +1,5 @@
 //
-//  NSURL+DSPaths.h
-//  Pods
+//  URL+DSPaths.swift
 //
 //  Created by Danny Sung on 05/07/2015.
 //

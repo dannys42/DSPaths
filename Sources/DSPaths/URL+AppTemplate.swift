@@ -1,6 +1,6 @@
 //  Converted to Swift 5.9.2 by Swiftify v5.9.29897 - https://swiftify.com/
 //
-//  NSURL+AppTemplate.h
+//  NSURL+AppTemplate.swift
 //
 //  Created by Danny Sung on 09/09/2014.
 //  Copyright (c) 2014 Sung Heroes LLC. All rights reserved.
@@ -203,15 +203,6 @@ public extension URL {
         return templateMapVar
     }
 }
-
-//
-//  NSURL+AppTemplate.m
-//  Music Stitcher
-//
-//  Created by Danny Sung on 09/09/2014.
-//  Copyright (c) 2014 Sung Heroes LLC. All rights reserved.
-//
-
 
 let kSUPPORT_DIRECTORY = "_ApplicationSupportDirectory"
 let kCUSTOMARY_SUPPORT_DIRECTORY = "_CustomaryApplicationSupportDirectory"

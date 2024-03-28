@@ -1,6 +1,5 @@
 //
-//  DSPaths+User.h
-//  Pods
+//  DSPaths+User.swift
 //
 //  Created by Danny Sung on 05/07/2015.
 //
@@ -34,11 +33,3 @@ public extension DSPaths {
         return self.path(withComponents: pathComponents, in: FileManager.SearchPathDirectory.userDirectory)
     }
 }
-
-//
-//  DSPaths+User.m
-//  Pods
-//
-//  Created by Danny Sung on 05/07/2015.
-//
-//

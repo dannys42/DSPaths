@@ -1,6 +1,5 @@
 //
 //  DSPaths+ApplicationSupport.swift
-//  Pods
 //
 //  Created by Danny Sung on 05/06/2015.
 //

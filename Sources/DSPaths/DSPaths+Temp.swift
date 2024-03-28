@@ -1,6 +1,5 @@
 //
-//  DSPaths+Temp.h
-//  Pods
+//  DSPaths+Temp.swift
 //
 //  Created by Danny Sung on 05/06/2015.
 //
@@ -62,11 +61,3 @@ public extension DSPaths {
         return path
     }
 }
-
-//
-//  DSPaths+Temp.m
-//  Pods
-//
-//  Created by Danny Sung on 05/06/2015.
-//
-//
