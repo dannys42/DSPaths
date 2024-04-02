@@ -12,7 +12,7 @@ public extension DSPaths {
     /// - Returns: Full path to the NSCachesDirectory.
     /// @retval nil if not available
     class var cacheDirectory: String {
-        return self.path(with: FileManager.SearchPathDirectory.cachesDirectory)
+        return self.path(with: FileManager.SearchPathDirectory.cachesDirectory)!
     }
 
     /// Get the full path to a file within the Cache Directory.
@@ -31,7 +31,7 @@ public extension DSPaths {
     /// @retval nil if NSCachesDirectory could not be determined.
     /// @retval nil if pathComponenets is nil
     class func cache(withPathComponents pathComponents: [String]) -> String {
-        return self.path(withComponents: pathComponents, in: FileManager.SearchPathDirectory.cachesDirectory)
+        return self.path(withComponents: pathComponents, in: FileManager.SearchPathDirectory.cachesDirectory)!
     }
 
     /// Get the full path to the Temp Directory and create it if necessary.
@@ -41,7 +41,7 @@ public extension DSPaths {
     /// - seealso: tempDirectory
     /// - Returns: full path to Temp Directory
     class func cacheDirectoryCreateIfNecessary(_ shouldCreate: Bool) throws -> String {
-        let path = self.path(with: FileManager.SearchPathDirectory.cachesDirectory)
+        let path = self.path(with: FileManager.SearchPathDirectory.cachesDirectory)!
 
         if shouldCreate {
             try self.createDirectory(path)

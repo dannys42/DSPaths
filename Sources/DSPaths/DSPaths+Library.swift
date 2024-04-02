@@ -11,7 +11,7 @@ public extension DSPaths {
     /// - Returns: Full path to the NSLibraryDirectory.
     /// @retval nil if not available
     class var libraryDirectory: String {
-        self.path(with: FileManager.SearchPathDirectory.libraryDirectory)
+        self.path(with: FileManager.SearchPathDirectory.libraryDirectory)!
     }
 
     /// Get the full path to a file within the Library Directory.
@@ -30,6 +30,6 @@ public extension DSPaths {
     /// @retval nil if NSLibraryDirectory could not be determined.
     /// @retval nil if pathComponenets is nil
     class func library(withPathComponents pathComponents: [String]) -> String {
-        return self.path(withComponents: pathComponents, in: FileManager.SearchPathDirectory.libraryDirectory)
+        return self.path(withComponents: pathComponents, in: FileManager.SearchPathDirectory.libraryDirectory)!
     }
 }

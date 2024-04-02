@@ -17,10 +17,23 @@ public class DSPaths {
     /// - Parameter searchPathDirectory:
     /// - Returns: filesystem path
     /// @retval nil if not found
-    public class func path(with searchPathDirectory: FileManager.SearchPathDirectory) -> String {
-        let paths = FileManager.default.urls(for: searchPathDirectory, in: .userDomainMask).map(\.path)
+    public class func path(with searchPathDirectory: FileManager.SearchPathDirectory) -> String? {
 
-        return paths.first!
+        let paths = NSSearchPathForDirectoriesInDomains(searchPathDirectory, .userDomainMask, true)
+
+        if paths.isEmpty {
+            if searchPathDirectory == .userDirectory {
+                return NSTemporaryDirectory()
+            }
+        }
+
+
+        // not clear if the newer API performs tilde replacement
+        //        let paths = FileManager.default.urls(for: searchPathDirectory, in: .userDomainMask).map(\.path)
+
+        return paths.first
+
+
     }
 
     /// Get the full path to a file within the search Path Directory.
@@ -41,8 +54,11 @@ public class DSPaths {
     /// @retval nil if searchPathDirectory could not be determined.
     /// @retval nil if filename is nil
     /// - seealso: pathWithSearchPathDirectory:
-    public class func path(withComponents pathComponents: [String], in searchPathDirectory: FileManager.SearchPathDirectory) -> String {
-        let path = self.path(with: searchPathDirectory)
+    public class func path(withComponents pathComponents: [String], in searchPathDirectory: FileManager.SearchPathDirectory) -> String? {
+
+        guard let path = self.path(with: searchPathDirectory) else {
+            return nil
+        }
         if pathComponents.isEmpty {
             return path
         }

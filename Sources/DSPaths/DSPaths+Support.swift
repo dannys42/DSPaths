@@ -11,7 +11,7 @@ public extension DSPaths {
     /// - Returns: Full path to the NSApplicationSupportDirectory.
     /// @retval nil if not available
     class var supportDirectory: String {
-        self.path(with: FileManager.SearchPathDirectory.applicationSupportDirectory)
+        self.path(with: FileManager.SearchPathDirectory.applicationSupportDirectory)!
     }
 
     /// Get the full path to a file within the Application Support Directory.
@@ -30,7 +30,7 @@ public extension DSPaths {
     /// @retval nil if NSApplicationSupportDirectory could not be determined.
     /// @retval nil if pathComponenets is nil
     class func support(withPathComponents pathComponents: [String]) -> String {
-        return self.path(withComponents: pathComponents, in: FileManager.SearchPathDirectory.applicationSupportDirectory)
+        return self.path(withComponents: pathComponents, in: FileManager.SearchPathDirectory.applicationSupportDirectory)!
     }
 
     /// Get the full path to the Application Support Directory and create it if necessary.
@@ -40,7 +40,7 @@ public extension DSPaths {
     /// - seealso: supportDirectory
     /// - Returns: full path to NSApplicationSupportDirectory
     class func supportDirectoryCreateIfNecessary(_ shouldCreate: Bool) throws -> String {
-        let path = self.path(with: FileManager.SearchPathDirectory.applicationSupportDirectory)
+        let path = self.path(with: FileManager.SearchPathDirectory.applicationSupportDirectory)!
 
         if shouldCreate {
             try self.createDirectory(path)
