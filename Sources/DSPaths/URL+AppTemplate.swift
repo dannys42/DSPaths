@@ -103,15 +103,15 @@ public extension URL {
 
         var nextIdx: Int = 0
         for idx in 0..<2 {
+            defer { nextIdx = idx + 1 }
+
             let component = pathComponents[idx]
             let mappedPath = templateMap[component]
             if let mappedPath {
                 newPathComponents.append(contentsOf: URL(fileURLWithPath: mappedPath).pathComponents)
-                nextIdx = idx + 2
                 break
             } else {
                 newPathComponents.append(component)
-                nextIdx = idx + 1
             }
         }
 

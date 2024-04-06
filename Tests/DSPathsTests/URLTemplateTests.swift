@@ -4,14 +4,14 @@ import XCTest
 final class URLTemplateTests: XCTestCase {
 
     func testThat_DocumentDirectory_CanContract() {
-        let observedValue = URL.contract(with: .documentDirectory()!)
+        let observedValue = URL.contract(with: .documentDirectory())
         let expectedValue = URL(string: "file:///\(kDOCUMENT_DIRECTORY)")!
 
         XCTAssertEqual(observedValue.absoluteString, expectedValue.absoluteString)
     }
 
     func testThat_ContractedDocumentDirectory_CanExpand() {
-        let inputValue = URL.contract(with: .documentDirectory()!)
+        let inputValue = URL.contract(with: .documentDirectory())
         let expectedValue = URL.documentDirectory()
 
         let observedValue = URL.expand(with: inputValue)
@@ -27,6 +27,29 @@ final class URLTemplateTests: XCTestCase {
         XCTAssertEqual(observedValue.absoluteString, expectedValue.absoluteString)
     }
 
+
+    func testThat_CustomPathAfterTemplate_IsPreserved() {
+        let inputValue = URL(string: "file:///\(kSUPPORT_DIRECTORY)/a")!
+        let expectedValue = [ "a" ]
+
+        let observedValue = URL.expand(with: inputValue)
+
+        let observedComponents = Array(observedValue.pathComponents.suffix(1))
+
+        XCTAssertEqual(observedComponents, expectedValue)
+    }
+
+
+    func testThat_CustomSubPathAfterTemplate_IsPreserved() {
+        let inputValue = URL(string: "file:///\(kSUPPORT_DIRECTORY)/a/b/c")!
+        let expectedValue = [ "a", "b", "c" ]
+
+        let observedValue = URL.expand(with: inputValue)
+
+        let observedComponents = Array(observedValue.pathComponents.suffix(3))
+
+        XCTAssertEqual(observedComponents, expectedValue)
+    }
 
     func testThat_ContractedCustomarySupportDirectory_CanExpand() {
         let inputValue = URL.contract(with: .supportDirectory()!)

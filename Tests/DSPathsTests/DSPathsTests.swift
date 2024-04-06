@@ -3,27 +3,27 @@ import XCTest
 
 final class DSPathsTests: XCTestCase {
     func testThat_CacheDirectory_IsDefined() {
-        XCTAssertNotNil( DSPaths.cacheDirectory() )
+        XCTAssertNotNil( DSPaths.cacheDirectory )
     }
 
     func testThat_DocumentDirectory_IsDefined() {
-        XCTAssertNotNil( DSPaths.documentDirectory() )
+        XCTAssertNotNil( DSPaths.documentDirectory )
     }
 
     func testThat_CustomarySupportDirectory_IsDefined() {
-        XCTAssertNotNil( DSPaths.customarySupportDirectory() )
+        XCTAssertNotNil( DSPaths.customarySupportDirectory )
     }
 
     func testThat_SupportDirectory_IsDefined() {
-        XCTAssertNotNil( DSPaths.supportDirectory() )
+        XCTAssertNotNil( DSPaths.supportDirectory )
     }
 
     func testThat_LibraryDirectory_IsDefined() {
-        XCTAssertNotNil( DSPaths.libraryDirectory() )
+        XCTAssertNotNil( DSPaths.libraryDirectory )
     }
 
     func testThat_TemporaryDirectory_IsDefined() {
-        XCTAssertNotNil( DSPaths.tempDirectory() )
+        XCTAssertNotNil( DSPaths.tempDirectory )
     }
 
 }
